@@ -6,42 +6,6 @@
     <title>Contact - Didier Deroey</title>
     <link rel="stylesheet" href="cv.css">
 </head>
-    <script>
-    const form = document.getElementById("contactForm");
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        // Construction des données dans le bon format
-        const formData = new FormData(form);
-        const data = new URLSearchParams();
-        for (const pair of formData) {
-            data.append(pair[0], pair[1]);
-        }
-
-        // Envoi via fetch dans le bon format
-        fetch("https://formspree.io/f/xvgkbkzb", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Accept": "application/json"
-            },
-            body: data
-        })
-        .then(response => {
-            if (response.ok) {
-                // ✅ Redirection si tout est bon
-                window.location.href = "https://didierd01.github.io/cv/cv.html";
-            } else {
-                alert("Une erreur est survenue. Veuillez réessayer.");
-            }
-        })
-        .catch(error => {
-            alert("Erreur réseau. Veuillez réessayer plus tard.");
-        });
-    });
-</script>
-
 <body>
 <div class="container">
     <header>
@@ -56,17 +20,22 @@
 
     <div class="section">
         <h2>Formulaire de Contact</h2>
-        <form id="contactForm" class="contact-form">
-            <label for="name">Entreprise :</label>
-            <input type="text" id="name" name="name" required>
+        <form action="https://formspree.io/f/xvgkbkzb" method="POST" class="contact-form">
+          <!-- Formspree gère tout automatiquement -->
 
-            <label for="email">Votre email :</label>
-            <input type="email" id="email" name="email" required>
+          <!-- Redirige après envoi -->
+          <input type="hidden" name="_redirect" value="https://didierd01.github.io/cv/cv.html">
 
-            <label for="message">Votre message :</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
+          <label for="name">Entreprise :</label>
+          <input type="text" id="name" name="Entreprise" required>
 
-            <button type="submit">Envoyer</button>
+          <label for="email">Votre email :</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="message">Votre message :</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+
+          <button type="submit">Envoyer</button>
         </form>
     </div>
 </div>
