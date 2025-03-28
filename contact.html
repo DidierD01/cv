@@ -6,36 +6,6 @@
     <title>Contact - Didier Deroey</title>
     <link rel="stylesheet" href="cv.css">
 </head>
-    
-    <script>
-    const form = document.getElementById("contactForm");
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-
-        fetch("https://formspree.io/f/xvgkbkzb", {
-            method: "POST",
-            body: formData,
-            headers: {
-                Accept: "application/json",
-            },
-        })
-        .then((response) => {
-            if (response.ok) {
-                // Redirection vers la page de ton CV
-                window.location.href = "https://didierd01.github.io/cv/cv.html";
-            } else {
-                alert("Une erreur est survenue. Veuillez réessayer.");
-            }
-        })
-        .catch((error) => {
-            alert("Erreur réseau. Veuillez réessayer plus tard.");
-        });
-    });
-</script>
-
 <body>
 <div class="container">
     <header>
@@ -50,7 +20,8 @@
 
     <div class="section">
         <h2>Formulaire de Contact</h2>
-        <form id="contactForm" class="contact-form">
+        <form action="https://formspree.io/f/xvgkbkzb" method="POST" class="contact-form">
+
             <label for="name">Entreprise :</label>
             <input type="text" id="name" name="name" required>
 
